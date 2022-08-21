@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hourly Weather Report</title>
+</head>
+<body>
+    <ul>
+        {% for hourlyData in weatherReport  %}
+            <li {% if hourlyData.isCurrentHour %} style="font-weight: bold; font-size: 20px" {% endif %}>
+                {{ hourlyData.date }} - {{ hourlyData.temperature }}C ({{ hourlyData.humidity }}%rh)
+                {{ hourlyData.condition }} <img src='{{ hourlyData.iconPath }}' height="20" alt="not found">
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
