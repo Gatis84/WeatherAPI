@@ -27,24 +27,24 @@ class WeatherReportService
         $report = json_decode($report);
 
         $weatherReport = [];
-        for ($i=0;$i<10;$i++)
-        {
-            $weatherReport[] = new Weather(
-                $report->forecast->forecastday[0]->hour[$i]->time,
-                $report->forecast->forecastday[0]->hour[$i]->temp_c,
-                $report->forecast->forecastday[0]->hour[$i]->humidity,
-                $report->forecast->forecastday[0]->hour[$i]->condition->text,
-                $report->forecast->forecastday[0]->hour[$i]->condition->icon
-            );
-//        foreach ($report->forecast->forecastday[0]->hour as $hourlyReport)
+//        for ($i=0;$i<10;$i++)
 //        {
 //            $weatherReport[] = new Weather(
-//                $hourlyReport->time,
-//                $hourlyReport->temp_c,
-//                $hourlyReport->humidity,
-//                $hourlyReport->condition->text,
-//                $hourlyReport->condition->icon
+//                $report->forecast->forecastday[0]->hour[$i]->time,
+//                $report->forecast->forecastday[0]->hour[$i]->temp_c,
+//                $report->forecast->forecastday[0]->hour[$i]->humidity,
+//                $report->forecast->forecastday[0]->hour[$i]->condition->text,
+//                $report->forecast->forecastday[0]->hour[$i]->condition->icon
 //            );
+        foreach ($report->forecast->forecastday[0]->hour as $hourlyReport)
+        {
+            $weatherReport[] = new Weather(
+                $hourlyReport->time,
+                $hourlyReport->temp_c,
+                $hourlyReport->humidity,
+                $hourlyReport->condition->text,
+                $hourlyReport->condition->icon
+            );
         }
         return $weatherReport;
 
